@@ -18,7 +18,7 @@ jobs:
     - name: Create ZIP
       shell: pwsh
       run: |
-        cd test-winforms1\bin\Release\netcoreapp3.1\win-x64\
+        cd .\bin\Release\netcoreapp3.1\win-x64\
         mv publish test-winforms1
         Compress-Archive -Path .\test-winforms1 -DestinationPath test-winforms1.zip
     - name: Upload to Existing Release
