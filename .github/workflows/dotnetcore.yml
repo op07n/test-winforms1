@@ -15,7 +15,17 @@ jobs:
         dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet build --configuration Release
+    - name: Create ZIP
+      shell: pwsh
+      run: |
+        Compress-Archive -Path .\bin -DestinationPath test-winforms1-win-x64.zip 
     - uses: actions/upload-artifact@v1
       with:
         name: artifact
         path: ./bin
+    - name: Upload to Existing Release
+      uses: Shopify/upload-to-release@1.0.0
+      with:
+        name: test-winforms1-win-x64.zip
+        path: .\bin\test-winforms1-win-x64.zip
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
