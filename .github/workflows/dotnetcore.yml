@@ -25,5 +25,5 @@ jobs:
       uses: Shopify/upload-to-release@1.0.0
       with:
         name: test-winforms1.zip
-        path: .\bin\Release\netcoreapp3.0\win-x64\test-winforms1.zip
+        path: bin\Release\netcoreapp3.0\win-x64\test-winforms1.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}      
