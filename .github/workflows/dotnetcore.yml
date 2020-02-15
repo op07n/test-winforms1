@@ -1,0 +1,29 @@
+name: .NET Core
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+    - name: Dotnet Publish
+      run: dotnet publish --runtime win-x64 --configuration Release
+    - name: Create ZIP
+      shell: pwsh
+      run: |
+        cd .\bin\Release\netcoreapp3.0\win-x64\
+        mv publish test-winforms1
+        Compress-Archive -Path .\test-winforms1 -DestinationPath test-winforms1.zip
+    - name: Upload to Existing Release
+      uses: Shopify/upload-to-release@1.0.0
+      with:
+        name: test-winforms1.zip
+        path: bin\Release\netcoreapp3.0\win-x64\test-winforms1.zip
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
