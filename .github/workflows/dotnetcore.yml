@@ -21,12 +21,13 @@ jobs:
         cd .\bin\Release\netcoreapp3.0\win-x64\
         mv publish test-winforms1
         Compress-Archive -Path .\test-winforms1 -DestinationPath test-winforms1.zip
-    - name: Upload to Existing Release
-      uses: lucyio/upload-to-release@1.0.0
+    - uses: lucyio/upload-to-release@master
       with:
         name: test-winforms1.zip
         path: bin\Release\netcoreapp3.0\win-x64\test-winforms1.zip
-        action: unpublished
-        release_id: 0.0.1
+        action: published
+        release_id: 1
         release-repo: op07n/test-winforms1
         repo-token: ${{ secrets.github_token_release }}    
+
+  
