@@ -28,6 +28,6 @@ jobs:
         action: published
         release_id: 1
         release-repo: op07n/test-winforms1
-        repo-token: ${{ secrets.github_token_release }}    
+        repo-token: ${{ secrets.GITHUB_TOKEN }} 
 
   
